@@ -51,6 +51,13 @@ def pagify(dom):
             parent_node = link.getparent()
             parent_node.replace(link, new_tag)
 
+    p_tags = dom.xpath("//div[@id='nr1']/p")
+    pcinvisible = dom.xpath("//p[@class='pcinvisible']")
+    for p in p_tags:
+        if (('class' in p.attrib and p.attrib['class'] == 'pcinvisible') 
+                or (re.search('落.*霞.*小.*说', p.text_content()) is not None)):
+            # print(p.text_content())
+            p.getparent().remove(p)
     return dom
 
 def cleanads(dom):
