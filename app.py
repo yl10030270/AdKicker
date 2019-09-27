@@ -54,7 +54,7 @@ def pagify(dom):
     # pcinvisible = dom.xpath("//p[@class='pcinvisible']")
     for p in p_tags:
         if (('class' in p.attrib and p.attrib['class'] == 'pcinvisible') or 
-            (re.search('落.*霞.*小.*说', p.text_content()) is not None)):
+            (re.search('落.*霞.*小.*[说|說]', p.text_content()) is not None)):
             # print(p.text_content())
             p.getparent().remove(p)
 
