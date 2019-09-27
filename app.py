@@ -1,6 +1,5 @@
 import requests
 from lxml import html
-from lxml.html.clean import Cleaner
 from lxml.html import builder as E
 import re
 import logging
@@ -58,6 +57,11 @@ def pagify(dom):
             (re.search('落.*霞.*小.*说', p.text_content()) is not None)):
             # print(p.text_content())
             p.getparent().remove(p)
+
+    form_tag = dom.xpath("//form[@id='commentform']")
+    for comment_form in form_tag:
+        comment_form.getparent().remove(comment_form)
+        
     return dom
 
 def cleanads(dom):
