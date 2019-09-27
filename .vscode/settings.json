@@ -1,7 +1,0 @@
-{
-    "python.pythonPath": "AdKicker-env/bin/python",
-    "files.exclude": {
-        "**/__pycache__": true,
-        "**/AdKicker-env": true
-    }
-}
