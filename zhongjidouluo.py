@@ -14,6 +14,7 @@ cookies = {}
 def index():
     r = requests.get(target_base_url)
     dom = html.fromstring(r.text);
+    rmelm(dom, "//script")
     return html.tostring(pagify(dom, target_base_url), pretty_print=True)
 
 
@@ -24,6 +25,9 @@ def page(id):
     dom = html.fromstring(r.text)
     rmelm(dom, "//center")
     rmelm(dom, "//script")
+    home_links = dom.xpath("//a[@href='" + target_base_url + "']")
+    for hl in home_links:
+        hl.attrib['href'] = '/'
     return html.tostring(pagify(dom, target_base_url), pretty_print=True)
 
 def writetofile(out_filename, text):
