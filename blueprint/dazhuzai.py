@@ -33,7 +33,7 @@ def page(id):
     return html.tostring(pagify(dom), pretty_print=True)
 
 def pagify(dom):
-    search_pattern = target_base_url + '(?P<id>\d+).htm';
+    search_pattern = target_base_url + r'(?P<id>\d+).htm'
     a_links = dom.xpath("//a[@href]")
     for link in a_links:
         id = re.search(search_pattern, link.attrib['href'])
@@ -52,7 +52,6 @@ def pagify(dom):
             parent_node.replace(link, new_tag)
 
     p_tags = dom.xpath("//div[@id='nr1']/p")
-    pcinvisible = dom.xpath("//p[@class='pcinvisible']")
     for p in p_tags:
         if (('class' in p.attrib and p.attrib['class'] == 'pcinvisible') 
                 or (re.search('落.*霞.*小.*说', p.text_content()) is not None)):
