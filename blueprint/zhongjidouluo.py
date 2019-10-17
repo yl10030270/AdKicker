@@ -29,9 +29,6 @@ def page(id):
     rmelement(dom, "//script")
     updelement(dom, 'a', 'href', lambda h : url_for('.index') if h == BASE_URL else h)
     rmattrib(dom, 'a', 'target')
-    # home_links = dom.xpath("//a[@href='" + BASE_URL + "']")
-    # for hl in home_links:
-    #     hl.attrib['href'] = '/'
     replaceahref(dom, BASE_URL + r'(?P<id>\d+).htm', lambda id : url_for('.page', id=id.group('id')))
     return html.tostring(dom, pretty_print=True)
 

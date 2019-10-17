@@ -1,5 +1,5 @@
 from flask import Flask, redirect, request, abort
-from blueprint import zhongjidouluo_bp, mh1359_bp, is_mh139url, MH139_BASE_URL
+from blueprint import zhongjidouluo_bp, mh1359_bp
 from urllib.parse import urljoin 
 
 app = Flask(__name__)

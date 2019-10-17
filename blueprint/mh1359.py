@@ -5,7 +5,7 @@ from .util import replaceahref, rmelement, updelement
 from urllib.parse import urljoin 
 import re
 
-PRE_FIX = 'mh139'
+PRE_FIX = 'mh1359'
 BASE_URL = 'https://m.mh1359.com/'
 
 mh1359_bp = Blueprint(PRE_FIX, __name__)
@@ -40,7 +40,3 @@ def transform(dom):
     dom = replaceahref(dom, r'/manhua/(?P<id>\d+)', lambda id : url_for('.manhua', idpage=id.group('id')))
     dom = replaceahref(dom, r'/chapter/(?P<id>\d+.html)', lambda id : url_for('.chapter', idpage=id.group('id')))
     return dom
-
-def is_mh139url(url):
-    return (re.search(r'/js/\d+.undefined.js', url) is not None or 
-            re.search(r'/api/updateview/', url) is not None)
